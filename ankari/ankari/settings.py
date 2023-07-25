@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+LOGOUT_REDIRECT_URL = '/' # Для логаута
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
 
 # Application definition
 
@@ -76,8 +82,10 @@ WSGI_APPLICATION = 'ankari.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ankari',
+        'USER': 'postgres',
+        'PASSWORD': 'gorobtsov1812',
     }
 }
 
