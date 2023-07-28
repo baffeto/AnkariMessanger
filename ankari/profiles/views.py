@@ -3,10 +3,10 @@ from .models import Profile
 
 
 def profile_view(request):
-    obj = Profile.objects.get(user=request.user)
+    profile = Profile.objects.get(user=request.user)
     
     context = {
-        'obj': obj
+        'profile': profile,
     }
     
     return render(request, 'profiles/profile.html', context)

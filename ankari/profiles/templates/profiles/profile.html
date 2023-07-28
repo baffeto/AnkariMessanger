@@ -4,6 +4,27 @@
 
 {% block content %}
 
-<h1>My prof</h1>
+<h1>My profile {{ profile }}</h1>
+<hr>
+<img src="{{ profile.avatar.url }}" alt="">
+<br>
+{{ profile.avatar.url }}
+<hr>
+{{ profile.avatar }}
+<hr>
+{{profile.first_name}}
+<hr>
+{{profile.last_name}}
+<hr>
+{{profile.bio}}
+<hr>
+{{profile.country}}
+<hr>
+{{profile.get_friends_quantity}}
+<hr>
+{% for friend in profile.get_friends %}
+<li>{{ friend }}</li>
+{% endfor %}
+
 
 {% endblock %}

@@ -11,15 +11,15 @@
             <div class="dropdown">
                 <button class="dropbtn" onclick="myFunction()">Account</button>
                 <div class="dropdown-content" id="myDropdown">
-                    <a href="#">Profile</a>
+                    <a class="profile" href="{% url 'profiles:myprofile' %}">Profile</a>
                     <a href="#">Info</a>
                     <a href="#">Settings</a>
-                    <a class="logout" href="{% url 'logout' %}">Log out</a>
+                    <a class="logout" href="{% url 'users:logout' %}">Log out</a>
                 </div>
             </div>
             {% else %}
-                <a class="login" href="{% url 'login' %}">Log In</a>
-                <a class="signup" href="{% url 'signup' %}">Sign Up</a>
+                <a class="login" href="{% url 'users:login' %}">Log In</a>
+                <a class="signup" href="{% url 'users:signup' %}">Sign Up</a>
             {% endif %}
         </div>
     </nav>
