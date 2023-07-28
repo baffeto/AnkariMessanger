@@ -3,10 +3,6 @@ from django.contrib.auth import login
 from .forms import SignUpForm
 
 
-def main_page(request):
-    return render(request, 'users/main.html')
-
-
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -16,7 +12,7 @@ def signup(request):
             
             login(request, user)
             
-            return redirect('main_page') # urls name
+            return redirect('home')
     else:
         form = SignUpForm()
         

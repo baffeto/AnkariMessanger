@@ -1,0 +1,25 @@
+<header id="header" class="header">
+    <nav class="header__nav">
+        <div class="header__logo">
+            <a href="#" class="header__logo__name">Ankari</a>
+            <a href="#">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="header__items">
+            {% if request.user.is_authenticated %}
+            <div class="dropdown">
+                <button class="dropbtn" onclick="myFunction()">Account</button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="#">Info</a>
+                    <a href="#">Settings</a>
+                    <a class="logout" href="{% url 'logout' %}">Log out</a>
+                </div>
+            </div>
+            {% else %}
+                <a class="login" href="{% url 'login' %}">Log In</a>
+                <a class="signup" href="{% url 'signup' %}">Sign Up</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>

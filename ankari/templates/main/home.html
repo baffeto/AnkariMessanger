@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Ankari | Messanger{% endblock %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class='console-container'><span id='text'></span><div class='console-underscore' id='console'>&#95;</div></div>
+{% endblock %}
+{% block javascript %}
+{% load static %}
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/base.js' %}"></script>
+{% endblock %}
