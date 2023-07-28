@@ -13,12 +13,12 @@ class Profile(models.Model):
     country = models.CharField(max_length=200, blank=True)
     avatar = models.ImageField(default='avatar.jpg', upload_to='avatars/')
     friends = models.ManyToManyField(User, blank=True, related_name='friends')
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
     updated = models.DateTimeField(auto_now=True) 
     created = models.DateTimeField(auto_now_add=True) 
     
     def __str__(self) -> str:
-        return f"{self.user.username} - {self.created}"
+        return f"{self.user.username} - {self.created.strftime('%d-%m-%Y')}"
     
     def save(self, *args, **kwargs):
         ex = False
