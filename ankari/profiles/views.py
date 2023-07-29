@@ -5,11 +5,18 @@ from .forms import ProfileModelForm
 
 def profile_view(request):
     profile = Profile.objects.get(user=request.user)
-    form = ProfileModelForm()
+    form = ProfileModelForm(request.POST or None, request.FILES or None, instance=profile)
+    confirm = False
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            confirm = True
     
     context = {
         'profile': profile,
         'form': form,
+        'confirm': confirm,
     }
     
     return render(request, 'profiles/profile.html', context)
