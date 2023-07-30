@@ -6,7 +6,7 @@ from profiles.models import Profile
 class Post(models.Model):
     content = models.TextField()
     image = models.ImageField(upload_to='posts', validators=[FileExtensionValidator(['png', 'jpg', 'jpeg'])], blank=True)
-    liked = models.ManyToManyField(Profile, default=None, related_name='likes')
+    liked = models.ManyToManyField(Profile, blank=True, related_name='likes')
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
@@ -16,6 +16,9 @@ class Post(models.Model):
     
     def likes_quantity(self):
         return self.likes.all().count()
+    
+    def comments_quantity(self):
+        return self.comment_set.all().count()
     
     class Meta:
         ordering = ('-created', )

@@ -25,7 +25,28 @@ class Profile(models.Model):
     
     def get_friends_quantity(self):
         return self.friends.all().count()
+    
+    def get_post_quantity(self):
+        return self.posts.all().count() # Потому что мы установили related_name в Post
 
+    def get_all_authors_posts(self):
+        return self.posts.all()
+    
+    def get_likes_given_quantity(self):
+        likes = self.like_set.all()
+        total_liked = 0
+        for item in likes:
+            if item.value == 'Like':
+                total_liked += 1
+        return total_liked
+    
+    def get_likes_received_quantity(self):
+        posts = self.posts.all()
+        total_liked = 0
+        for item in posts:
+            total_liked += item.likes.all().count()
+        return total_liked
+        
     
     def save(self, *args, **kwargs):
         ex = False
