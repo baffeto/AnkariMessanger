@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block title %}Ankari | Profile{% endblock %}
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
 
 {% block content %}
 
@@ -8,55 +12,58 @@
 <h1>Updated</h1>
 {% endif %}
 
-<form action="" method="POST" enctype="multipart/form-data">
+<!-- <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="profile__button">Update</button>
-</form>
+</form> -->
 
-{% comment %} Хочу сделать по нажатию на кнопку PopUp button {% endcomment %}
-<h3>My profile: {{ request.user }}</h3>
-<div>
-    <img src={{profile.avatar.url}}>
-
-    <div>
-        <button>Кнопка, попап обновить профиль</button>
+<div class="wrapper">
+    <div class="container">
+        <div class="profile__image">
+            <img src="{{ profile.avatar.url }}" alt="Здесь должен был быть ваш логотип">
+            <div class="profile__button">
+                <button class="profile__button-update">Кнопка, попап обновить профиль</button>
+            </div>
+        </div>
+        <div class="profile__info">
+            <h2>Информация о профиле: {{ request.user }}</h2>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>username</td>
+                        <td>{{ profile.user }}</td>
+                    </tr>
+                    <tr>
+                        <td>first_name</td>
+                        <td>{{ profile.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>last_name</td>
+                        <td>{{ profile.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>bio</td>
+                        <td>{{ profile.bio }}</td>
+                    </tr>
+                    <tr>
+                        <td>Number of friends</td>
+                        <td>{{ profile.get_friends_quantity }}</td>
+                    </tr>
+                    <tr>
+                        <td>Friends</td>
+                        <td>
+                            <ul>
+                                {% for friend in profile.get_friends %}
+                                <li>{{ friend }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-<div>
-    <table>
-        <tbody>
-            <tr>
-                <td>username</td>
-                <td>{{ profile.user }}</td>
-            </tr>
-            <tr>
-                <td>first_name</td>
-                <td>{{ profile.first_name }}</td>
-            </tr>
-            <tr>
-                <td>last_name</td>
-                <td>{{ profile.last_name }}</td>
-            </tr>
-            <tr>
-                <td>bio</td>
-                <td>{{ profile.bio }}</td>
-            </tr>
-            <tr>
-                <td>Number of friends</td>
-                <td>{{ profile.get_friends_quantity }}</td>
-            </tr>
-            <tr>
-                <td>Friends</td>
-                <td>
-                    <ul>
-                        {% for friend in profile.get_friends %}
-                        <li>{{ friend }}</li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+
 {% endblock %}

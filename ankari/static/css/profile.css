@@ -1,0 +1,16 @@
+.wrapper {
+    max-width: 1200px;
+    margin: 100px auto 0;
+    background-color: red;
+}
+
+.container {
+    display: flex;
+    padding: 40px;
+}
+
+.profile__button-update {
+    width: 100%;
+    background-color: antiquewhite;
+    height: 20px;
+}
