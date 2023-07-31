@@ -1,0 +1,27 @@
+services:
+  django-ankari:
+    build:
+      context: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./ankari:/ankari
+
+    environment:
+      - DB_HOST=database
+      - DB_NAME=ankari
+      - DB_USER=postgres
+      - DB_PASSWORD=gorobtsov1812
+
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8888"
+  
+    depends_on:
+      - database
+  
+  database:
+    image: postgres:14.6-alpine
+    environment:
+      - POSTGRES_DB=ankari
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=gorobtsov1812
