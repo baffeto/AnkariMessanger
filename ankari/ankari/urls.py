@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls', namespace='users')),
     path('profile/', include('profiles.urls', namespace='profiles')),
+    path('api/', include('api.urls', namespace='api')),
     path('', home_view, name='home')
 ]
 
