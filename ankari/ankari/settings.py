@@ -1,4 +1,6 @@
 from pathlib import Path
+from pythonjsonlogger.jsonlogger import JsonFormatter
+from logging_ankari.logging_formatters import CustomJsonFormatter
 import os
 import socket
 
@@ -92,6 +94,46 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME'),
         'USER': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASSWORD'),
+    }
+}
+
+# Логирование проекта
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    
+    'formatters': {
+        'ankari-main-formatter': {
+            'format': "{asctime} - {levelname} - {module} - {filename} - {funcName} - {message}",
+            "style": '{',
+        },
+        
+        'json-main-formatter': {
+            '()': CustomJsonFormatter,
+        }
+    },
+
+    'handlers': {
+        # Печатает в консоль
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'ankari-main-formatter'
+        },
+        # Печатает в файл
+        'file': {
+            'class': 'logging.FileHandler',
+            'formatter': 'json-main-formatter',
+            'filename': 'info.log',
+        },
+    },
+    
+    'loggers': {
+        'main': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': True
+        },
     }
 }
 

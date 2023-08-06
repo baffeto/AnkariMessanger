@@ -3,4 +3,4 @@ psycopg2-binary
 pillow
 djangorestframework
 django-debug-toolbar
-socket
+python-json-logger
