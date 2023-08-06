@@ -7,6 +7,7 @@ from .views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('__debug__/', include('debug_toolbar.urls')),
     path('users/', include('users.urls', namespace='users')),
     path('profile/', include('profiles.urls', namespace='profiles')),
     path('api/', include('api.urls', namespace='api')),
