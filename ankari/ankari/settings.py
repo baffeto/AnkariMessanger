@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'users',
     'profiles',
     'posts',
+    'services',
     'api',
     'rest_framework',
     'debug_toolbar'
@@ -102,7 +103,7 @@ DATABASES = {
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    
+
     'formatters': {
         'ankari-main-formatter': {
             'format': "{asctime} - {levelname} - {module} - {filename} - {funcName} - {message}",
@@ -158,10 +159,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
+    
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
     ],
 }
 
