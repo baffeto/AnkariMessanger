@@ -2,32 +2,49 @@
 
 {% block title %}Sign Up | Ankari{% endblock %}
 
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
 {% block content %}
-
-<div class="p-10 lg:p-20 text-center">
-    <h1 class="text-3xl lg:text-6xl text-white">Sign Up</h1>
-</div>
-
-<form method="post" action="." class="lg:w-1/4 px-4 mx-auto">
+<main>
+<div class="div">
+<form action="" method="post" class="form">
     {% csrf_token %}
-    <div class="mb-5">
-        <label class="text-white">Username</label>
-
-        <input type="text" name="username" class="w-full mt-2 px-4 py-2 rounded-xl">
-    </div>
-    
-    <div class="mb-5">
-        <label class="text-white">Password</label>
-
-        <input type="password" name="password1" class="w-full mt-2 px-4 py-2 rounded-xl">
-    </div>
-
-    <div class="mb-5">
-        <label class="text-white">Repeat password</label>
-
-        <input type="password" name="password2" class="w-full mt-2 px-4 py-2 rounded-xl">
-    </div>
-    
+        <a href="{% url 'home' %}" class="form-link"> <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+            width="30px" height="30px" viewBox="0 0 512.000000 512.000000"
+            preserveAspectRatio="xMidYMid meet">
+        <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+        fill="#000000" stroke="none">
+        <path d="M2370 5114 c-19 -2 -78 -9 -130 -15 -547 -62 -1087 -327 -1489 -730
+        -407 -409 -656 -917 -733 -1499 -16 -123 -16 -497 0 -620 55 -411 198 -792
+        424 -1128 174 -258 447 -527 708 -698 1028 -672 2369 -532 3227 337 207 210
+        346 405 473 664 93 189 137 304 185 488 255 971 -86 2005 -870 2640 -206 166
+        -493 328 -737 415 -139 49 -366 106 -508 127 -100 15 -475 28 -550 19z m525
+        -269 c244 -38 450 -102 670 -210 245 -119 437 -255 626 -444 349 -349 565
+        -774 651 -1276 31 -187 31 -523 0 -710 -86 -502 -302 -927 -651 -1276 -353
+        -353 -798 -577 -1301 -655 -161 -25 -502 -25 -655 0 -146 23 -295 59 -403 95
+        -830 281 -1422 988 -1558 1861 -25 160 -25 500 0 660 138 886 741 1596 1589
+        1871 150 48 294 77 527 103 73 9 409 -4 505 -19z"/>
+        <path d="M2875 3761 c-50 -31 -1113 -1104 -1124 -1134 -16 -40 -13 -104 4
+        -141 23 -48 1114 -1133 1148 -1141 48 -12 93 3 127 42 29 33 32 41 27 86 l-4
+        49 -519 519 -519 519 519 519 519 519 5 51 c4 49 3 53 -36 91 -33 33 -46 40
+        -78 40 -22 0 -52 -9 -69 -19z"/>
+        </g>
+        </svg> </a>
+        <h1 class="form-main">Ankari</h1>
+        <h2 class="form-title">Log In</h2>
+        <div class="form-group">
+            <input type="text" name="username" id="username" required class="form-group-name" placeholder="Username">
+            <input type="password" name="password1" id="password" required class="form-group-password" placeholder="Password">
+            <input type="password" name="password2" id="password" required class="form-group-password" placeholder="Repeat password">
+            <button type="submit" class="form-group-button">Sign Up</button>
+            <a class="form-group-link" href="{% url 'users:login' %}">Do you have an account?</a>
+        </div>
+    </form>
+</div>
+</main>
 {% if form.errors %}
 {% for field in form %}
     {% for error in field.errors %}
@@ -39,9 +56,4 @@
     {% endfor %}
 {% endfor %}
 {% endif %}
-
-<button type="submit" class="px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700">Submit</button>
-
-</form>
-
 {% endblock %}

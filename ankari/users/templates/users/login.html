@@ -1,4 +1,4 @@
-<!-- {% extends 'base.html' %} -->
+{% extends 'base.html' %}
 
 {% block title %}Log In | Ankari{% endblock %}
 
@@ -12,7 +12,7 @@
 <div class="div">
 <form action="" method="post" class="form">
     {% csrf_token %}
-        <a href="" class="form-link"> <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+        <a href="{% url 'home' %}" class="form-link"> <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
             width="30px" height="30px" viewBox="0 0 512.000000 512.000000"
             preserveAspectRatio="xMidYMid meet">
         <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
@@ -40,7 +40,7 @@
             <input type="password" name="password" id="password" required class="form-group-password" placeholder="Password">
             <span class="form-group-span"><a href="" class="form-input-link">Forgot your password?</a></span>
             <button type="submit" class="form-group-button">Login</button>
-            <a class="form-group-link" href="">Do you have an account?</a>
+            <a class="form-group-link" href="{% url 'users:signup' %}">Unregistered?</a>
         </div>
     </form>
 </div>

@@ -7,8 +7,7 @@ from django.contrib.auth.models import User
 
 class SubscriptionView(ReadOnlyModelViewSet):
     queryset = Subscription.objects.all().prefetch_related('plan',
-                                          Prefetch('user', queryset=User.objects.all())
-              ).annotate(price=F('service__full_price') - 
-                F('service__full_price') * F('plan__discount_percent') / 100.00)
+               Prefetch('user', queryset=User.objects.all())).annotate(
+    price=F('service__full_price') - F('service__full_price') * F('plan__discount_percent') / 100.00)
     
     serializer_class = SubscriptionSerializer
