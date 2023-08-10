@@ -5,9 +5,9 @@ import datetime
 import time
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'service.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ankari.settings')
 
-app = Celery('service')
+app = Celery('ankari')
 app.config_from_object('django.conf:settings')
 app.conf.broker_url = settings.CELERY_BROCKER_URL
 app.autodiscover_tasks()
