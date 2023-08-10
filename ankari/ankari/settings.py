@@ -214,3 +214,6 @@ SECURE_FRAME_DENY = False
 
 # Celery
 
+# Протокол, хостнейм, порт, база данных редиса
+
+CELERY_BROCKER_URL = 'redis://redis:6379/0'

@@ -4,3 +4,6 @@ pillow
 djangorestframework
 django-debug-toolbar
 python-json-logger
+flower
+redis
+celery
