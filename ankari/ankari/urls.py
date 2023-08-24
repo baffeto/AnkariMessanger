@@ -11,6 +11,7 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('profile/', include('profiles.urls', namespace='profiles')),
     path('api/', include('api.urls', namespace='api')),
+    path('rooms/', include('rooms.urls', namespace='rooms')),
     path('', home_view, name='home')
 ]
 
