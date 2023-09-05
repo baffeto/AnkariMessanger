@@ -3,7 +3,9 @@ from pythonjsonlogger.jsonlogger import JsonFormatter
 from logging_ankari.logging_formatters import CustomJsonFormatter
 import os
 import socket
+from django.conf import settings
 
+# settings.configure()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +31,8 @@ LOGIN_URL = '/users/login/'
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -83,8 +87,14 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = 'ankari.asgi.application'
 WSGI_APPLICATION = 'ankari.wsgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -92,10 +102,9 @@ WSGI_APPLICATION = 'ankari.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get('DB_HOST'),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'NAME': 'ankari',
+        'USER': 'postgres',
+        'PASSWORD': 'gorobtsov1812',
     }
 }
 
