@@ -67,6 +67,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'ankari.middlewares.TestMiddleware',
+    'ankari.middlewares.TimerMiddleware'
 ]
 
 ROOT_URLCONF = 'ankari.urls'
